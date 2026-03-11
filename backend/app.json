@@ -1,0 +1,75 @@
+{
+  "name": "skill-erp-backend",
+  "description": "Skill Training ERP Backend API — NSDC Integrated Academic Management System",
+  "keywords": ["node", "express", "prisma", "postgresql", "erp", "nsdc"],
+  "repository": "https://github.com/your-org/skill-erp-backend",
+  "logo": "https://node-js-sample.herokuapp.com/node.svg",
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0",
+      "as": "DATABASE"
+    }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "description": "Application environment",
+      "value": "production"
+    },
+    "JWT_SECRET": {
+      "description": "Secret key for JWT token signing. Use a long random string.",
+      "generator": "secret"
+    },
+    "JWT_EXPIRES_IN": {
+      "description": "JWT token expiry duration",
+      "value": "7d"
+    },
+    "JWT_REFRESH_SECRET": {
+      "description": "Secret key for JWT refresh token",
+      "generator": "secret"
+    },
+    "FRONTEND_URL": {
+      "description": "URL of the deployed frontend app (e.g. Vercel URL)",
+      "value": "https://your-frontend.vercel.app"
+    },
+    "RATE_LIMIT_WINDOW_MS": {
+      "description": "Rate limiting window in milliseconds",
+      "value": "900000"
+    },
+    "RATE_LIMIT_MAX": {
+      "description": "Max requests per window per IP",
+      "value": "1000"
+    },
+    "CACHE_TTL": {
+      "description": "Cache time-to-live in seconds",
+      "value": "300"
+    },
+    "MAX_FILE_SIZE": {
+      "description": "Maximum file upload size in bytes",
+      "value": "10485760"
+    },
+    "UPLOAD_DIR": {
+      "description": "Directory for file uploads (use /tmp on Heroku ephemeral filesystem)",
+      "value": "/tmp/uploads"
+    },
+    "NSDC_API_URL": {
+      "description": "NSDC API base URL",
+      "value": "https://api.nsdc.org.in/v1"
+    },
+    "NSDC_API_KEY": {
+      "description": "Your NSDC API key",
+      "required": false
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  }
+}

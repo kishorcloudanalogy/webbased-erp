@@ -27,7 +27,8 @@ const PORT = process.env.PORT || 5000;
 const API_PREFIX = process.env.API_PREFIX || '/api';
 
 // Ensure upload directory exists
-const uploadDir = process.env.UPLOAD_DIR || './uploads';
+// On Heroku: UPLOAD_DIR=/tmp/uploads (ephemeral — use S3 for persistence)
+const uploadDir = process.env.UPLOAD_DIR || (process.env.NODE_ENV === 'production' ? '/tmp/uploads' : './uploads');
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
 // Security middleware

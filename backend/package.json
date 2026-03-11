@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Skill Training ERP Backend API",
   "main": "dist/index.js",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
@@ -11,7 +15,8 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev --name init",
     "prisma:push": "prisma db push",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "heroku-postbuild": "cp prisma/schema.postgresql.prisma prisma/schema.prisma && npx prisma generate && npm run build"
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",
@@ -26,6 +31,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "node-cache": "^5.1.2",
+    "prisma": "^5.10.2",
     "uuid": "^9.0.1",
     "zod": "^3.22.4"
   },
@@ -39,7 +45,6 @@
     "@types/multer": "^1.4.11",
     "@types/node": "^20.11.30",
     "@types/uuid": "^9.0.8",
-    "prisma": "^5.10.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.3"
